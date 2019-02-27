@@ -4,16 +4,15 @@ import Header from 'next/head';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
-import { createGlobalStyle } from 'styled-components';
-import { backgroundColor } from '../static/styleConstants';
-import createStore from '../store';
+import configureStore from '../store';
+import GlobalStyle from './globalStyle';
 
 class BelloteroApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
 
     if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps({ ctx });
+      pageProps = await Component.getInitialProps(ctx);
     }
 
     return { pageProps };
@@ -37,10 +36,4 @@ class BelloteroApp extends App {
 
 BelloteroApp.displayName = 'BelloteroApp';
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    background-color: ${backgroundColor};
-  }
-`;
-
-export default withRedux(createStore)(withReduxSaga(BelloteroApp));
+export default withRedux(configureStore)(withReduxSaga(BelloteroApp));
