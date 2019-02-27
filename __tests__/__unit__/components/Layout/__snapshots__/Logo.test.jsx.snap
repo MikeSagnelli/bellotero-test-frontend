@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test Logo renders logo 1`] = `
+exports[`Logo renders logo 1`] = `
 <styles__LogoContainer>
   <styles__MainLogo
     alt="Bellotero"
