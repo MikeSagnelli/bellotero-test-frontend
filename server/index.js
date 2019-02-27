@@ -10,12 +10,11 @@ app
   .then(() => {
     const server = express();
 
-    // Example on how to render pretty links
-    // server.get('/p/:id', (req, res) => {
-    //   const actualPage = '/post';
-    //   const queryParams = { title: req.params.id };
-    //   app.render(req, res, actualPage, queryParams);
-    // });
+    server.get('/', (req, res) => {
+      const actualPage = '/page-1';
+      const queryParams = { title: req.params.id };
+      app.render(req, res, actualPage, queryParams);
+    });
 
     server.get('*', (req, res) => {
       return handle(req, res);
