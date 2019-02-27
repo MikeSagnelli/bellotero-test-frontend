@@ -1,7 +1,7 @@
-import { take, call, all, put, takeLatest } from 'redux-saga/effects';
+import { all, put, takeLatest } from 'redux-saga/effects';
 import es6promise from 'es6-promise';
 import 'isomorphic-unfetch';
-import { actionTypes, failure, loadDataSuccess, changeRoute } from './actions';
+import { actionTypes, failure, loadDataSuccess } from './actions';
 
 es6promise.polyfill();
 
@@ -17,11 +17,6 @@ const successActionTypes = {
   configurator: actionTypes.CONFIGURATOR_SUCCESS
 };
 
-function* setNewRoute() {
-  const action = yield take(actionTypes.CHANGE_ROUTE);
-  yield put(changeRoute(action.index));
-}
-
 function* loadData(api, actionType) {
   try {
     const response = yield fetch(api);
@@ -34,7 +29,6 @@ function* loadData(api, actionType) {
 
 function* rootSaga() {
   yield all([
-    call(setNewRoute),
     takeLatest(actionTypes.LOAD_GLOBAL, () => loadData(APIs.global, successActionTypes.global)),
     takeLatest(
       actionTypes.LOAD_TESTIMONIAL,

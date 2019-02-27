@@ -2,7 +2,6 @@ import { actionTypes } from './actions';
 
 export const initState = {
   error: false,
-  activeRoute: global.activeRoute ? global.activeRoute : 0,
   globalData: null,
   testimonialData: null,
   configuratorData: null
@@ -32,12 +31,6 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         ...{ configuratorData: action.data }
-      };
-
-    case actionTypes.CHANGE_ROUTE:
-      return {
-        ...state,
-        ...{ activeRoute: action.index }
       };
 
     default:

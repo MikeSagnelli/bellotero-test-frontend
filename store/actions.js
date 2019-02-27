@@ -5,8 +5,7 @@ export const actionTypes = {
   LOAD_CONFIGURATOR: 'LOAD_CONFIGURATOR',
   GLOBAL_SUCCESS: 'GLOBAL_SUCCESS',
   TESTIMONIAL_SUCCESS: 'TESTIMONIAL_SUCCESS',
-  CONFIGURATOR_SUCCESS: 'CONFIGURATOR_SUCCESS',
-  CHANGE_ROUTE: 'CHANGE_ROUTE'
+  CONFIGURATOR_SUCCESS: 'CONFIGURATOR_SUCCESS'
 };
 
 export const failure = error => ({
@@ -21,9 +20,4 @@ export const loadData = actionType => ({
 export const loadDataSuccess = (data, actionType) => ({
   type: actionType,
   data
-});
-
-export const changeRoute = index => ({
-  type: actionTypes.CHANGE_ROUTE,
-  index
 });

@@ -4,9 +4,8 @@ import Link from 'next/link';
 import { connect } from 'react-redux';
 import { MainContainer, Header, Content, RoutesContainer, RouteContainer, Route } from './styles';
 import Logo from './Logo';
-import { changeRoute } from '../../store/actions';
 
-const Layout = ({ children, globalData, activeRoute, dispatch }) => (
+const Layout = ({ children, globalData, activeRoute }) => (
   <MainContainer>
     <Header>
       <Content>
@@ -15,7 +14,7 @@ const Layout = ({ children, globalData, activeRoute, dispatch }) => (
           {globalData.menu.items.map((route, i) => (
             <RouteContainer className={activeRoute === i ? 'active' : ''} key={route.text}>
               <Link href={route.route}>
-                <Route onClick={() => dispatch(changeRoute(i))}>{route.text}</Route>
+                <Route>{route.text}</Route>
               </Link>
             </RouteContainer>
           ))}
@@ -40,14 +39,12 @@ Layout.propTypes = {
       )
     })
   }),
-  activeRoute: PropTypes.number.isRequired,
-  dispatch: PropTypes.func
+  activeRoute: PropTypes.number.isRequired
 };
 
 Layout.defaultProps = {
   children: null,
-  globalData: null,
-  dispatch: () => {}
+  globalData: null
 };
 
 export default connect(state => state)(Layout);
