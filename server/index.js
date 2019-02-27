@@ -12,7 +12,19 @@ app
 
     server.get('/', (req, res) => {
       const actualPage = '/page-1';
-      const queryParams = { title: req.params.id };
+      const queryParams = { route: req.params.route };
+      app.render(req, res, actualPage, queryParams);
+    });
+
+    server.get('/Testimonial', (req, res) => {
+      const actualPage = '/page-1';
+      const queryParams = { route: req.params.route };
+      app.render(req, res, actualPage, queryParams);
+    });
+
+    server.get('/Configurator', (req, res) => {
+      const actualPage = '/page-2';
+      const queryParams = { route: req.params.route };
       app.render(req, res, actualPage, queryParams);
     });
 

@@ -11,11 +11,20 @@ const Layout = ({ children, globalData, activeRoute }) => (
       <Content>
         <Logo />
         <RoutesContainer>
-          {globalData.menu.items.map((route, i) => (
-            <RouteContainer className={activeRoute === i ? 'active' : ''} key={route.text}>
-              <Link href={route.route}>
-                <Route>{route.text}</Route>
-              </Link>
+          {globalData.menu.items.map(route => (
+            <RouteContainer
+              className={activeRoute === route.route ? 'active' : ''}
+              key={route.text}
+            >
+              {route.route !== '#' ? (
+                <Link as={route.text} href={route.route}>
+                  <Route id="no-route">{route.text}</Route>
+                </Link>
+              ) : (
+                <Link href={route.route}>
+                  <Route id="route">{route.text}</Route>
+                </Link>
+              )}
             </RouteContainer>
           ))}
         </RoutesContainer>
@@ -39,12 +48,13 @@ Layout.propTypes = {
       )
     })
   }),
-  activeRoute: PropTypes.number.isRequired
+  activeRoute: PropTypes.string
 };
 
 Layout.defaultProps = {
   children: null,
-  globalData: null
+  globalData: null,
+  activeRoute: ''
 };
 
 export default connect(state => state)(Layout);
