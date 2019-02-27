@@ -29,14 +29,14 @@ function* loadData(api, actionType) {
 
 function* rootSaga() {
   yield all([
-    takeLatest(actionTypes.LOAD_GLOBAL, loadData(APIs.global, successActionTypes.global)),
+    takeLatest(actionTypes.LOAD_GLOBAL, () => loadData(APIs.global, successActionTypes.global)),
     takeLatest(
       actionTypes.LOAD_TESTIMONIAL,
-      loadData(APIs.testimonial, successActionTypes.testimonial)
+      loadData(APIs.testimonial, () => successActionTypes.testimonial)
     ),
     takeLatest(
       actionTypes.LOAD_CONFIGURATOR,
-      loadData(APIs.configurator, successActionTypes.configurator)
+      loadData(APIs.configurator, () => successActionTypes.configurator)
     )
   ]);
 }

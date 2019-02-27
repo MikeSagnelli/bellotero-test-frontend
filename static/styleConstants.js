@@ -5,3 +5,5 @@ export const whiteColor = '#FFFFFF';
 export const backgroundColor = '#F9FAFF';
 
 export const textColor = '#161616';
+
+export const containerSize = '1093px';
