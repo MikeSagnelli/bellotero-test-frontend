@@ -5,26 +5,18 @@ import Layout from '../../components/Layout';
 import Slider from '../../components/Slider';
 import { loadData, actionTypes } from '../../store/actions';
 
-class Page1 extends React.PureComponent {
-  static async getInitialProps({ store, pathname }) {
-    if (!store.getState().globalData) {
-      store.dispatch(loadData(actionTypes.LOAD_GLOBAL));
-    }
-    if (!store.getState().testimonialData) {
-      store.dispatch(loadData(actionTypes.LOAD_TESTIMONIAL));
-    }
-    return { activeRoute: pathname.substring(1) };
-  }
+const Page1 = ({ activeRoute }) => (
+  <Layout activeRoute={activeRoute}>
+    <Slider />
+  </Layout>
+);
 
-  render() {
-    const { activeRoute } = this.props;
-    return (
-      <Layout activeRoute={activeRoute}>
-        <Slider />
-      </Layout>
-    );
-  }
-}
+Page1.getInitialProps = async ({ store, pathname }) => {
+  await store.dispatch(loadData(actionTypes.LOAD_TESTIMONIAL));
+  await store.dispatch(loadData(actionTypes.LOAD_CONFIGURATOR));
+  await store.dispatch(loadData(actionTypes.LOAD_GLOBAL));
+  return { activeRoute: pathname.substring(1) };
+};
 
 Page1.displayName = 'Page1';
 

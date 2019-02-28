@@ -3,23 +3,20 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Layout from '../../components/Layout';
 import { loadData, actionTypes } from '../../store/actions';
+import Calculator from '../../components/Calculator';
 
-class Page2 extends React.PureComponent {
-  static async getInitialProps({ store, pathname }) {
-    if (!store.getState().globalData) {
-      store.dispatch(loadData(actionTypes.LOAD_GLOBAL));
-    }
-    if (!store.getState().testimonialData) {
-      store.dispatch(loadData(actionTypes.LOAD_CONFIGURATOR));
-    }
-    return { activeRoute: pathname.substring(1) };
-  }
+const Page2 = ({ activeRoute }) => (
+  <Layout activeRoute={activeRoute}>
+    <Calculator />
+  </Layout>
+);
 
-  render() {
-    const { activeRoute } = this.props;
-    return <Layout activeRoute={activeRoute} />;
-  }
-}
+Page2.getInitialProps = async ({ store, pathname }) => {
+  await store.dispatch(loadData(actionTypes.LOAD_TESTIMONIAL));
+  await store.dispatch(loadData(actionTypes.LOAD_CONFIGURATOR));
+  await store.dispatch(loadData(actionTypes.LOAD_GLOBAL));
+  return { activeRoute: pathname.substring(1) };
+};
 
 Page2.displayName = 'Page2';
 
