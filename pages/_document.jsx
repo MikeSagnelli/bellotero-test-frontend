@@ -17,6 +17,7 @@ class BDocument extends Document {
         <Head>
           {styleTags}
           <meta name="viewport" content="initial-scale=1, width=device-width" key="viewport" />
+          <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon" />
           <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
           <link
             href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:600i"
