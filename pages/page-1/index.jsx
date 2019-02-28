@@ -2,12 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Layout from '../../components/Layout';
+import Slider from '../../components/Slider';
 import { loadData, actionTypes } from '../../store/actions';
 
 class Page1 extends React.PureComponent {
   static async getInitialProps({ store, pathname }) {
     if (!store.getState().globalData) {
       store.dispatch(loadData(actionTypes.LOAD_GLOBAL));
+    }
+    if (!store.getState().testimonialData) {
+      store.dispatch(loadData(actionTypes.LOAD_TESTIMONIAL));
     }
     return { activeRoute: pathname.substring(1) };
   }
@@ -16,7 +20,7 @@ class Page1 extends React.PureComponent {
     const { activeRoute } = this.props;
     return (
       <Layout activeRoute={activeRoute}>
-        <h1>Hello World</h1>
+        <Slider />
       </Layout>
     );
   }

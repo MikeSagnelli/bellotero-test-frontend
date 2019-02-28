@@ -1,12 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Layout from '../../components/Layout';
 import { loadData, actionTypes } from '../../store/actions';
 
-class Index extends React.PureComponent {
+class Page2 extends React.PureComponent {
   static async getInitialProps({ store, pathname }) {
     if (!store.getState().globalData) {
       store.dispatch(loadData(actionTypes.LOAD_GLOBAL));
+    }
+    if (!store.getState().testimonialData) {
+      store.dispatch(loadData(actionTypes.LOAD_CONFIGURATOR));
     }
     return { activeRoute: pathname.substring(1) };
   }
@@ -17,6 +21,16 @@ class Index extends React.PureComponent {
   }
 }
 
-Index.displayName = 'Index';
+Page2.displayName = 'Page2';
 
-export default connect()(Index);
+Page2.displayName = 'Page2';
+
+Page2.propTypes = {
+  activeRoute: PropTypes.string
+};
+
+Page2.defaultProps = {
+  activeRoute: 'page-1'
+};
+
+export default connect()(Page2);
