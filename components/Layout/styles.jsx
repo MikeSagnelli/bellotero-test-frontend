@@ -14,11 +14,26 @@ export const Header = styled.div`
   width: 100%;
 `;
 
-export const Content = styled.div`
+export const MainContent = styled.div`
+  display: flex;
+  justify-content: center;
+  height: calc(100% - 64px);
+  width: 100%;
+`;
+
+const Content = styled.div`
   width: 100%;
   max-width: ${containerSize};
   display: flex;
+`;
+
+export const HeaderContent = styled(Content)`
   justify-content: space-between;
+`;
+
+export const InnerContent = styled(Content)`
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const LogoContainer = styled.div`

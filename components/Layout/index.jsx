@@ -2,13 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { connect } from 'react-redux';
-import { MainContainer, Header, Content, RoutesContainer, RouteContainer, Route } from './styles';
+import {
+  MainContainer,
+  Header,
+  MainContent,
+  InnerContent,
+  HeaderContent,
+  RoutesContainer,
+  RouteContainer,
+  Route
+} from './styles';
 import Logo from './Logo';
 
 const Layout = ({ children, globalData, activeRoute }) => (
   <MainContainer>
     <Header>
-      <Content>
+      <HeaderContent>
         <Logo />
         <RoutesContainer>
           {globalData.menu.items.map(route => (
@@ -28,9 +37,11 @@ const Layout = ({ children, globalData, activeRoute }) => (
             </RouteContainer>
           ))}
         </RoutesContainer>
-      </Content>
+      </HeaderContent>
     </Header>
-    {children}
+    <MainContent>
+      <InnerContent>{children}</InnerContent>
+    </MainContent>
   </MainContainer>
 );
 
