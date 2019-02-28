@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider/Controls renders slider 1`] = `
+<styles__SwitchersContainer>
+  <styles__SwitchButton
+    id="prev-button"
+    onClick={[MockFunction]}
+  >
+    <styles__Arrow
+      alt="next"
+      src="/static/images/arrow.svg"
+    />
+  </styles__SwitchButton>
+  <styles__SwitchButton
+    id="next-button"
+    onClick={[MockFunction]}
+  >
+    <styles__RightArrow
+      alt="next"
+      src="/static/images/arrow.svg"
+    />
+  </styles__SwitchButton>
+</styles__SwitchersContainer>
+`;
